@@ -72,7 +72,7 @@ try({
     keep(~str_detect(.x, tf)) %>% 
     # .[100:120] %>% 
     map_dfr_progress(~{
-      the_assets <- httr::GET(paste0("https://github.com/favstats/meta_ad_targeting/releases/expanded_assets/", .x))
+      the_assets <- httr::GET(paste0("https://github.com/cronbach/meta_ad_targeting/releases/expanded_assets/", .x))
       
       the_assets %>% httr::content() %>% 
         html_elements(".Box-row") %>% 
@@ -102,7 +102,7 @@ try({
     arrange(desc(ds))
   
   try({
-    latest_elex <- arrow::read_parquet(paste0("https://github.com/favstats/meta_ad_targeting/releases/download/", sets$cntry, "-last_", tf,"_days/", thosearethere$ds[1], ".parquet"))
+    latest_elex <- arrow::read_parquet(paste0("https://github.com/cronbach/meta_ad_targeting/releases/download/", sets$cntry, "-last_", tf,"_days/", thosearethere$ds[1], ".parquet"))
   })
   
   if(!exists("latest_elex")){
@@ -398,7 +398,7 @@ try({
   ## TODO: needs to change once you got all countries
   
   # if(!(the_tag %in% release_names)){
-  pb_release_create_fr(repo = "favstats/meta_ad_targeting", 
+  pb_release_create_fr(repo = "cronbach/meta_ad_targeting", 
                        tag = the_tag,
                        body = paste0("This release includes ", cntry_name ," '", "last_",tf,"_days" ,"' Meta ad target audiences."), 
                        releases = releeasee)    # Sys.sleep(5)
@@ -418,7 +418,7 @@ try({
   # print(the_tag)
   # debugonce(pb_upload_file_fr)
   # debugonce(pb_upload_file_fr)
-  pb_upload_file_fr(paste0(the_date, ".parquet"), repo = "favstats/meta_ad_targeting", tag = the_tag, releases = releeasee)
+  pb_upload_file_fr(paste0(the_date, ".parquet"), repo = "cronbach/meta_ad_targeting", tag = the_tag, releases = releeasee)
   # pb_upload_file_fr(paste0(the_date, ".zip"), repo = "favstats/meta_ad_reports", tag = the_tag, releases = full_repos)
   
   

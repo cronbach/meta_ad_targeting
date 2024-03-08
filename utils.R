@@ -613,7 +613,7 @@ pb_info_fr <- function(repo = guess_repo(),
 get_full_release <- function() {
   # tryCatch({
     # Your original operation
-    full_repos <- pb_info_fr("favstats/meta_ad_targeting") %>% as_tibble()
+    full_repos <- pb_info_fr("cronbach/meta_ad_targeting") %>% as_tibble()
     
     return(full_repos)  # return the result
   # }, error = function(e) {
